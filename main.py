@@ -5,15 +5,11 @@ warnings.filterwarnings('ignore')
 import numpy as np, pandas as pd
 from numpy import inf
 
-Oi = np.array([100, 120, 140])
-Dj = np.array([70, 150, 130])
-W_data = np.array([[0, 7, 2],[7, 0, 6],[2, 6, 0]])
-
 Oi = np.round(pd.read_excel('./data/supply.xlsx').T.values[0], decimals=4)
 Dj = pd.read_excel('./data/demand.xlsx').T.values[0]
 W_data = pd.read_excel('./data/weight.xlsx').to_numpy()
 
-filepath = "./data/result.csv"
+filepath = "./data/result_15.csv"
 i = 1
 
 # Write file
@@ -25,7 +21,7 @@ def write_file(filepath, data):
 W_temp = (Dj * Oi[np.newaxis].T) / W_data
 W_temp[W_temp == inf] = 0 #Change inf to 0
 type = 1
-num_of_iteration = 10000
+num_of_iteration = 100000
 
 while i < num_of_iteration:
     print("Iteration {}".format(i + 1))
